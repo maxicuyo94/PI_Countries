@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios')
 const { Op } = require("sequelize");
-const { Country, Activities } = require('../db');
+const { Country, Activity } = require('../db');
 
 // // [ ] GET /countries?name="...":
 // // Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
@@ -33,7 +33,7 @@ router.get('/', async function (req, res) {
         }
         else {
             let country = await Country.findAll({
-                include: { model: Activities },
+                include: { model: Activity },
                 where: {name:{[Op.iLike]:`%${name}%`}}
             })
             country ? res.json(country) : res.sendStatus(404)
@@ -51,7 +51,7 @@ router.get('/:idPais', async function (req, res) {
         let { idPais } = req.params
         let country = await Country.findByPk(
             idPais.toUpperCase(),
-            { include: { model: Activities } }
+            { include: { model: Activity } }
         )
         country ? res.json(country) : res.sendStatus(404)
     } catch (error) {
