@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios')
 const { Op } = require("sequelize");
-const { Country, Activity } = require('../db');
+const { Country, Activity,Seasons } = require('../db');
 
 // // [ ] GET /countries?name="...":
 // // Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
@@ -29,6 +29,8 @@ router.get('/', async function (req, res) {
                 }
                 Country.findOrCreate({ where: info })
             }))
+            let seasons =[Winter,Autumn,Spring,Summer]
+            await Promise.all(seasons.map(season=>Seasons.findOrCreate({ where: {name:season }})))
             res.json(await Country.findAll({ limit: 10 }))
         }
         else {
