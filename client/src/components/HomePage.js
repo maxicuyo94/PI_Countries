@@ -48,6 +48,7 @@ const HomePage = () => {
     return (
         <div>
          <div>
+         <Link to="/search"><button>Buscar</button></Link>
                 <button id="prev" onClick={(e) => prevPage(e)}>
                     <Link to={"/home/" + (page - 1)}>{"<"}</Link>
                 </button>
@@ -55,6 +56,7 @@ const HomePage = () => {
                 <button id="next" onClick={(e) => nextPage(e)}>
                     <Link to={"/home/" + (page + 1)}>{">"}</Link>
                 </button>
+
                 <label>Order </label>
                 <select onChange={(e) => changeSort(e)}>
                     <option value="">By</option>

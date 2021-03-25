@@ -1,28 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import { AutoSuggest } from 'react-autosuggestions';
 import { useDispatch, useSelector } from 'react-redux'
-import { getAll } from '../actions/actions';
+import { getAll, getByName } from '../actions/actions';
 import Cards from './Cards';
 
 const SearchPage = () => {
-    const [countryPage, setCountryPage] = useState();
+    const [filter, setFilter] = useState({name:"",region:"",activity:""});
     const dispatch = useDispatch()
+
     useEffect(() => {
-        dispatch(getAll())
-    }, [dispatch])
-    let countries = useSelector(state => state.countries)
-    const returnedArray = Array.from(countries)
-    let countriesName = returnedArray.map(c=>c.name)
- console.log (countriesName)
+         dispatch(getByName(filter.name,filter.region,filter.activity)) 
+        }, [dispatch, filter])
+
+    let countriesPage = useSelector(state => state.countriesPage)
+
     return (
         <div>
-            <AutoSuggest
-                name="Country"
-                options={countriesName}
-                handleChange={setCountryPage}
-                value={countryPage}
-            />
-            <Cards countries={countryPage} />
+            <div>
+
+                <input
+                    placeholder="Find Country"
+                    type="text"
+                    name="username"
+                    onChange={(e) => setFilter({...filter,name:e.target.value})}
+                    value={filter.name}
+                />
+
+            <select  onChange={(e) => setFilter({...filter,region:e.target.value})} >
+                <option value="">REGION</option>
+                <option value="Europe">EUROPE</option>
+                <option value="Americas">AMERICAS</option>
+                <option value="Asia">ASIA</option>
+                <option value="Africa">AFRICA</option>
+                <option value="Oceania">OCEANIA</option>
+                <option value="Polar">POLAR</option>
+            </select>
+            </div>
+            <Cards countries={countriesPage} />
         </div>
     )
 }

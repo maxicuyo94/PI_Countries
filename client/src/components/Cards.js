@@ -7,10 +7,9 @@ const Cards = (props) => {
 
     return (
         <div className="CardsContainer">
-            {countries && countries.map((c, i) => (
+            {Array.isArray(countries) && countries.map((c, i) => (
                 <Link to={`/country/${c.alpha3Code}`} key={`link_${c.alpha3Code}`}>
                     <Card
-                    
                         className={"C" + i}
                         name={c.name}
                         flag={c.flag}

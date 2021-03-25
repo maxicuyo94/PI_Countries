@@ -28,6 +28,11 @@ const todos = (state = initialState, action) => {
         ...state,
         country: action.payload
       }
+    case "GET_BY_NAME":
+      return {
+        ...state,
+        countriesPage: action.payload
+      }
     default:
       return state;
   }
