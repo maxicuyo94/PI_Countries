@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios')
 const { Op } = require("sequelize");
-const { Country, Activity, Seasons } = require('../db');
+const { Country, Activity, Season } = require('../db');
 
 // // [ ] GET /countries?name="...":
 // // Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
@@ -81,7 +81,7 @@ router.get("/", async (req, res) => {
         else {
 
             let season = ["Winter", "Autumn", "Spring", "Summer"]
-            await Promise.all(season.map((s) => Seasons.findOrCreate({ where: { name: s } })))
+            await Promise.all(season.map((s) => Season.findOrCreate({ where: { name: s } })))
             let auxCountries = await axios.get(`https://restcountries.eu/rest/v2/all`)
             await Promise.all(auxCountries.data.map((c) => {
                 let info = {
