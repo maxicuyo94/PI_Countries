@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const axios = require('axios')
 const { Op } = require("sequelize");
 const { Country, Seasons, Activity } = require('../db');
 // [ ] POST /activity:
