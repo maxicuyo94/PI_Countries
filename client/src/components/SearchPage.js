@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAll, getByName } from '../actions/actions';
+import {  getByName } from '../actions/actions';
 import Cards from './Cards';
 
 const SearchPage = () => {

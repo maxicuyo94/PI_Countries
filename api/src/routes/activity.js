@@ -41,13 +41,12 @@ router.post('/season', async function (req, res) {
                 duration
             }
         })
-        let auxSeason = await Season.findByPk({ [Op.iLike]: `%${season}%` })
-        console.log(auxActivity, auxSeason)
-
-        await auxActivity[0].setSeasons(auxSeason[0])
-
-
+        let auxSeason = await Season.findByPk(season)
+        console.log(auxActivity)
+        console.log("asdfasdfasdfasd", auxSeason)
+        // await auxActivity[0].setSeasons(auxSeason[0])
         res.json(auxActivity)
+        // res.status(505).send("asdfasdfa")
     } catch (error) {
         res.status(505).send("error")
     }
