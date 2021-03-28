@@ -47,8 +47,8 @@ const HomePage = () => {
 
     return (
         <div>
-         <div>
-         <Link to="/search"><button>Buscar</button></Link>
+            <div>
+                <Link to="/search"><button>Buscar</button></Link>
                 <button id="prev" onClick={(e) => prevPage(e)}>
                     <Link to={"/home/" + (page - 1)}>{"<"}</Link>
                 </button>
@@ -67,7 +67,7 @@ const HomePage = () => {
                 </select>
             </div>
             <Cards
-            
+
                 page={page}
                 sort={sort}
                 countries={countriesPage}

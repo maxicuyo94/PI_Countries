@@ -12,7 +12,7 @@ export const getPage = (page, sort) => {
         dispatch({ type: GET_PAGE, payload: res.data })
     }
 }
-export const getByName = (name, region, activity) => {
+export const getByName = (name, region, activity, justName) => {
     return async (dispatch) => {
         let res
         console.log(name)
@@ -25,6 +25,9 @@ export const getByName = (name, region, activity) => {
         }
         if (activity) {
             Array.isArray(res.data) && (res.data = res.data.filter(c => c.activity.filter(a => a.name === activity).length))
+        }
+        if (justName){
+            Array.isArray(res.data) &&(res.data = res.data.map(c => c.name))
         }
         dispatch({ type: GET_BY_NAME, payload: res.data })
     }

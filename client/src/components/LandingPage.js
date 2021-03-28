@@ -1,13 +1,14 @@
 import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getStart } from '../actions/actions';
+import { getAll, getStart } from '../actions/actions';
 
 const LandingPage = () => {
     const dispatch = useDispatch()
    
     useEffect(() => {
         dispatch(getStart())
+        dispatch(getAll())
     }, [dispatch]) 
 
     return (
