@@ -14,19 +14,15 @@ router.get("/", async (req, res) => {
     console.log(name, page, sort)
     try {
         if(page==="all"){
-            console.log(name, page, sort)
             let country = await Country.findAll({
                 include: { model: Activity },
             })
             return country ? res.json(country) : res.sendStatus(404)
         }
         if (page) {
-            console.log(name, page, sort)
-            console.log("entre")
 
             switch (sort) {
                 case "AtoZ":
-                    console.log(page)
                     return res.json(await Country.findAll({
                         order: [['name', 'ASC']],
                         include: {model: Activity,},
@@ -34,8 +30,6 @@ router.get("/", async (req, res) => {
                         offset: 10 * (page - 1)
                     }))
                 case "ZtoA":
-                    console.log(page,"ZtoA")
-
                     return res.json(await Country.findAll({
                         order: [['name', 'DESC']],
                         include: { model: Activity},
@@ -43,7 +37,6 @@ router.get("/", async (req, res) => {
                         offset: 10 * (page - 1)
                     }))
                 case "pobAsc":
-                    console.log(page)
                     return res.json(await Country.findAll({
                         order: [['population', 'ASC']],
                         include: {model: Activity},
@@ -51,7 +44,6 @@ router.get("/", async (req, res) => {
                         offset: 10 * (page - 1)
                     }))
                 case "pobDes":
-                    console.log(page,"sort")
                     return res.json(await Country.findAll({
                         order: [['population', 'DESC']],
                         include: {model: Activity},
@@ -60,8 +52,6 @@ router.get("/", async (req, res) => {
                     }))
 
                 default:
-                    console.log ("unsorted")
-                    console.log(page)
                     return res.json(await Country.findAll({
                         include: { model: Activity },
                         limit: 10,
@@ -70,8 +60,6 @@ router.get("/", async (req, res) => {
             }
         }
         if (name) {
-            console.log(name, page, sort)
-
             let country = await Country.findAll({
                 include: { model: Activity },
                 where: { name: { [Op.iLike]: `%${name}%` } }
@@ -79,7 +67,6 @@ router.get("/", async (req, res) => {
             return country ? res.json(country) : res.sendStatus(404)
         }
         else {
-
             let season = ["Winter", "Autumn", "Spring", "Summer"]
             await Promise.all(season.map((s) => Season.findOrCreate({ where: { name: s } })))
             let auxCountries = await axios.get(`https://restcountries.eu/rest/v2/all`)

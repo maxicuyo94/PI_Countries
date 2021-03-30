@@ -2,22 +2,24 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
+import { btn, container, checkmark, containerAdd, inputStyle, largeBtn, checkBox, range } from "./styles/AddActivity.module.css";
+
 
 
 
 const AddActivity = () => {
     let [country, setCountry] = useState("")
     let [activity, setActivity] = useState({ countries: [], name: "", dificulty: "1", duration: "" })
-    // let [season, setSeason] = useState([])
+    let [season, setSeason] = useState([])
     // const dispatch = useDispatch()
 
 
     let countriesList = useSelector(state => state.countries)
 
-    // const handleCheck = (e) => {
-    //     console.log(e.target.checked)
-
-    // }
+    const handleCheck = (e) => {
+        e.target.checked && setSeason([...season, e.target.value])
+        !e.target.checked && setSeason([...season.filter(s => s !== e.target.value)])
+    }
     const handleChange = (e) => {
         e.preventDefault();
         let nam = e.target.name
@@ -40,6 +42,7 @@ const AddActivity = () => {
         e.preventDefault()
         setActivity({ ...activity, countries: [...activity.countries.filter(c => c !== e.target.name)] })
     }
+
     let handleSubmit = (e) => {
         e.preventDefault();
         console.log(activity)
@@ -48,38 +51,58 @@ const AddActivity = () => {
             axios.post('http://localhost:3001/api/activity/country',
                 { country, name, dificulty, duration })
         )
+        season.map(season =>
+            axios.post('http://localhost:3001/api/activity/season',
+                { season, name, dificulty, duration })
+        )
+        alert("Activity created")
     }
+
     let validateCountry = (a) => {
         console.log("hol", countriesList)
         return countriesList.some(c => c.name === a)
     }
     return (
-        <div>
+        <div className={containerAdd}>
             <form>
                 <div>
-                    <label>Add Activity</label>
+                    <h4>Add Activity</h4>
                 </div>
-                <label>
-                    Name: <input type="text" name="name" onChange={handleChange} />
-                </label>
+                <label>  Activity Name: </label><br />
+                <input className={inputStyle} type="text" name="name" onChange={handleChange} />
                 <div>
-                    <label>   Dificulty ({activity.dificulty}): <input type="range" min="1" max="5" step="1" name="dificulty" onChange={handleChange} /> </label>
-                    <label>   Duration(days): <input type="number" name="duration" onChange={handleChange} /> </label>
+                    <label>Dificulty ({activity.dificulty}):</label><br />
+                    <input className={inputStyle}  id={range} type="range" min="1" max="5" step="1" name="dificulty" onChange={handleChange} /><br />
+                    <label>Duration(days): </label><br />
+                    <input className={inputStyle}type="number" name="duration" onChange={handleChange} />
                 </div>
                 <div>
-                    <label>  Country:<input type="text" name="country" onChange={e => setCountry(e.target.value)} /><button onClick={addCountry}>+</button>
-                    </label>
-                    {Array.isArray(activity.countries) && activity.countries.map(c => <label>{c} <button name={c} onClick={delCountry}>x</button></label>)}
+                    <label>Country:</label> <br />
+                    <input className={inputStyle}  type="text" name="country" onChange={e => setCountry(e.target.value)} />
+                    <button className={btn} onClick={addCountry}>+</button><br />
+
+                    {Array.isArray(activity.countries) && activity.countries.map(c => <label>{c} <button className={btn} name={c} onClick={delCountry}>x</button></label>)}
                 </div>
                 <label>Seasons:</label>
-                <div>
-                    <label>Winter <input type="checkbox" id="Winter" value="Winter" /></label>
-                    <label>Autumn <input type="checkbox" id="Autumn" value="Autumn" /></label>
-                    <br />
-                    <label>Summer <input type="checkbox" id="Summer" value="Summer" /></label>
-                    <label>Spring <input type="checkbox" id="Spring" value="Spring" /></label>
+                <div className={checkBox}>
+                    <label className={container}>Winter 
+                    <input type="checkbox" id="Winter" value="Winter" onClick={handleCheck} />
+                        <span className={checkmark} />
+                    </label>
+                    <label className={container}>Autumn 
+                    <input type="checkbox" id="Autumn" value="Autumn" onClick={handleCheck} />
+                        <span className={checkmark} />
+                    </label>
+                    <label className={container}>Summer
+                    <input type="checkbox" id="Summer" value="Summer" onClick={handleCheck} />
+                        <span className={checkmark} />
+                    </label>
+                    <label className={container}>Spring
+                    <input type="checkbox" id="Spring" value="Spring" onClick={handleCheck} />
+                        <span className={checkmark} />
+                    </label>
                 </div>
-                <button value="Add Activity" onClick={handleSubmit} > Add </button>
+                <button className={largeBtn} value="Add Activity" onClick={handleSubmit} > Add </button>
 
             </form>
         </div>

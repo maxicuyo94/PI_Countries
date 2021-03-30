@@ -1,8 +1,23 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+/* eslint-disable jest/valid-expect */
+import { configure, shallow } from "enzyme"
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import App from "../src/App"
+const { expect } = require("chai")
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+
+configure({adapter: new Adapter()});
+
+ 
+
+describe('App', () => {
+  let wrapper = shallow(<App/>)
+    it("should be a function", () => {
+      expect(App).to.be.a("function")
+    })
+    it("should render a div", () => {
+      expect(wrapper.find('div'));
+    }) 
+    it("should render aa div", () => {
+      expect(wrapper.find('route'));
+    }) 
+})

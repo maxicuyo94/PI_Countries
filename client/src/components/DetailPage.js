@@ -3,6 +3,7 @@ import React, { useEffect, useState, } from 'react'
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getById } from './../actions/actions';
+import {  container ,flags} from "./styles/DetailPage.module.css";
 
 
 const DetailPage = () => {
@@ -12,11 +13,11 @@ const DetailPage = () => {
     const country= useSelector(state => state.country);
     let { flag, name, alpha3Code: countryId, region, capital, subregion, area, population, activities } =country
     useEffect(() => { dispatch(getById(id)) }, [dispatch, id]);
-console.log(country)
+console.log(activities)
     return (
-        <div>
-            <div className="Flag">
-                <img src={flag} width="18%" alt="flag" />
+        <div className={container}>
+            <div className={flags}>
+                <img className={flags} src={flag} width="100%" alt="flag" />
             </div>
             <div>
                 <p>Name: {name}</p>
@@ -28,12 +29,13 @@ console.log(country)
                 <p>Population: {population}</p>
             </div>
 
-            <div>
+            <span>
                 <h3>Activities:</h3>
                 <ul>
-                    {activities&&activities.length ?activities.map(a=><li>{a.name}</li>):<li>No hay actividades</li>}
+                    {activities&&activities.length ?
+                    activities.map(a=><li>{a.name}       Duration: {a.duration}      Difficulty: {a.dificulty} </li>):<li>No hay actividades</li>}
                 </ul>
-            </div>
+            </span>
 
         </div>
     )

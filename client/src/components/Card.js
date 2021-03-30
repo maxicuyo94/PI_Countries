@@ -1,19 +1,18 @@
 import React from 'react'
+import { card, container, img, imgContainer, text } from "./styles/Card.module.css"
 
 const Card = (props) => {
-    let{flag,name,region} =props
+    let { flag, name, region } = props
     return (
-        <div >
-        <div className="Flag">
-            <img src={flag} width="18%" alt="flag" />
+        <div className={card}>
+            <div className={imgContainer}>
+                <img className={img} src={flag} alt="flag" />
+            </div>
+            <div className={container} >
+                <p className={text}><h4 className={text}>{name}</h4></p>
+                <p className={text}>{region}</p>
+            </div>
         </div>
-        <div className="Name">
-            <h5> {name} </h5>
-        </div>
-        <div className="Region">
-            <h6> {region} </h6>
-        </div>
-    </div>
     )
 }
 

@@ -1,0 +1,26 @@
+.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 60px;
+  color: rgb(14, 10, 10);
+  text-decoration: none;
+  font-size: 17px;
+  font-style: inherit;
+  background-color: #f38153;
+  width: 25rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flags {
+  transition: 0.3s;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+  max-width: 20rem;
+  max-height: 30rem;
+}

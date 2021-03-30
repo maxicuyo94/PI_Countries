@@ -1,0 +1,38 @@
+  .card {
+    margin: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 13rem;
+    height: 15rem;
+    background-color: #E4E6C3;
+    border-radius: 5px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 20px 24px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container {
+    padding: 4px 4px;
+    color : rgb(14, 10, 10);
+    text-decoration:none;
+
+  }
+  .img{
+    box-sizing: content-box;
+
+    border-radius: 5px;
+    max-width: 12rem;
+    max-height:8rem ;
+    padding: auto
+  }
+  .imgContainer{
+    padding: 4px 4px 0px 4px;
+    display:block;
+    margin:auto;
+    height: 8rem;
+  }
+ .text{
+   margin: 8px;
+ }
+

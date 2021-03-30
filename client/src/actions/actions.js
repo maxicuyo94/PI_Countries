@@ -24,7 +24,7 @@ export const getByName = (name, region, activity, justName) => {
             Array.isArray(res.data) && (res.data = res.data.filter(c => c.region === region))
         }
         if (activity) {
-            Array.isArray(res.data) && (res.data = res.data.filter(c => c.activity.filter(a => a.name === activity).length))
+            Array.isArray(res.data) && (res.data = res.data.filter(c => c.activities.filter(a => a.name === activity).length))
         }
         if (justName){
             Array.isArray(res.data) &&(res.data = res.data.map(c => c.name))

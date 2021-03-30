@@ -1,0 +1,54 @@
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #261c15;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f7f7f2;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #E4E6C3;
+    color: #261C15;
+  }
+  
+ .btnPage{
+    text-align: center;
+    float: center;
+    cursor: pointer;
+    border: none; /* Remove borders */
+    color: #f7f7f2; /* Add a text color */
+    background-color: #261c15;
+    overflow: hidden;
+ }
+
+
+.select{
+    font-size: 17px;
+    padding: 10px 16px;
+    background-color :#f7f7f2;
+    float : right;
+    border: none;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    
+}
+.input{
+    font-size: 17px;
+    padding: 10px 16px;
+    background-color :#f7f7f2;
+    float : left;
+    border: none;
+    margin-bottom: 3px;
+    margin-left: 3px;
+
+}

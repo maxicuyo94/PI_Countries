@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Cards from './Cards';
-// import SearchBar from './SearchBar';
+import { topnav, btnPage  ,select} from "./styles/HomePage.module.css";
+
 
 const HomePage = () => {
 
@@ -47,24 +48,22 @@ const HomePage = () => {
 
     return (
         <div>
-            <div>
-                <Link to="/search"><button>Buscar</button></Link>
-                <button id="prev" onClick={(e) => prevPage(e)}>
+            <div className={topnav}>
+                <Link to="/search">Buscar</Link>
+                <button className={btnPage} id="prev" onClick={(e) => prevPage(e)}>
                     <Link to={"/home/" + (page - 1)}>{"<"}</Link>
                 </button>
-                <span>{` ${page}  `}</span>
-                <button id="next" onClick={(e) => nextPage(e)}>
+                {/* <text className >{` ${page}  `}</text> */}
+                <button className={btnPage} id="next" onClick={(e) => nextPage(e)}>
                     <Link to={"/home/" + (page + 1)}>{">"}</Link>
                 </button>
-
-                <label>Order </label>
-                <select onChange={(e) => changeSort(e)}>
-                    <option value="">By</option>
-                    <option value="AtoZ">A to Z</option>
-                    <option value="ZtoA">Z to A</option>
-                    <option value="pobAsc">Ascending Population</option>
-                    <option value="pobDes">Descending Population</option>
-                </select>
+                    <select className={select} onChange={(e) => changeSort(e)}>
+                        <option value=""> Order By</option>
+                        <option value="AtoZ">A to Z</option>
+                        <option value="ZtoA">Z to A</option>
+                        <option value="pobAsc">Ascending Population</option>
+                        <option value="pobDes">Descending Population</option>
+                    </select>
             </div>
             <Cards
 

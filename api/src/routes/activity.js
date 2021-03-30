@@ -6,7 +6,7 @@ const { Country, Season, Activity } = require('../db');
 // Crea una actividad turística en la base de datos
 router.post('/country', async function (req, res) {
     let { name, dificulty, duration, country, } = req.body
-    console.log(req.body)
+    // console.log(req.body)
     try {
         let auxActivity = await Activity.findOrCreate({
             where: {
@@ -22,18 +22,15 @@ router.post('/country', async function (req, res) {
         })
         console.log(auxActivity, auxCountry)
         await auxActivity[0].setCountries(auxCountry[0])
-
-
         res.json(auxActivity)
     } catch (error) {
-        res.status(505).send("error")
+        res.status(505).send(error)
     }
 })
 router.post('/season', async function (req, res) {
     let { name, dificulty, duration,  season } = req.body
-    console.log(req.body)
+    console.log( name, dificulty, duration,  season )
     try {
-
         let auxActivity = await Activity.findOrCreate({
             where: {
                 name,
@@ -42,11 +39,8 @@ router.post('/season', async function (req, res) {
             }
         })
         let auxSeason = await Season.findByPk(season)
-        console.log(auxActivity)
-        console.log("asdfasdfasdfasd", auxSeason)
-        // await auxActivity[0].setSeasons(auxSeason[0])
+        await auxActivity[0].setSeasons(auxSeason)
         res.json(auxActivity)
-        // res.status(505).send("asdfasdfa")
     } catch (error) {
         res.status(505).send("error")
     }
