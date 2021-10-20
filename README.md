@@ -4,7 +4,7 @@
 
 -  El proyecto tiene dos carpetas `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
 
-En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
+-En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
 ```
 DB_USER=usuariodepostgres
@@ -12,11 +12,11 @@ DB_PASSWORD=passwordDePostgres
 DB_HOST=localhost
 ```
 
-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres.
+-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres.
 
-Adicionalmente será necesario que creen desde psql una base de datos llamada `countries`
+-Adicionalmente será necesario que creen desde psql una base de datos llamada `countries`
 
-El contenido de `client` fue creado usando: Create React App.
+-El contenido de `client` fue creado usando: Create React App.
 
 - En ambas carpetas ejecutar 
 > npm i
