@@ -38,6 +38,10 @@ const AddActivity = () => {
     setActivity({ ...activity, [nam]: val });
     console.log(countriesList);
   };
+  let validateCountry = (a) => {
+    console.log("validateCountry", countriesList);
+    return countriesList.some((c) => c.name === a);
+  };
   let addCountry = (e) => {
     e.preventDefault();
     console.log(country);
@@ -80,10 +84,6 @@ const AddActivity = () => {
     alert("Activity created");
   };
 
-  let validateCountry = (a) => {
-    console.log("hol", countriesList);
-    return countriesList.some((c) => c.name === a);
-  };
   return (
     <div className={containerAdd}>
       <form>
